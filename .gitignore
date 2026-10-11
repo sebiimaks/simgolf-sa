@@ -11,5 +11,12 @@
 *.sve
 *.gpr
 *.rep/
+*.7z
+*.iso
+/SIMGOLF.102.ENG.MYTH.NOCD/
 node_modules/
 build/
+.DS_Store
+# Desktop app: the prepared web build and packaged apps (desktop/README.md)
+/desktop/site/
+/desktop/dist/
