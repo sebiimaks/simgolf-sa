@@ -1,0 +1,41 @@
+{
+  "name": "simgolf-desktop",
+  "productName": "SimGolf",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SimGolf in its own window: the WebAssembly port packaged as a desktop app.",
+  "license": "MIT",
+  "main": "main.js",
+  "scripts": {
+    "prepare-site": "node scripts/prepare-site.mjs",
+    "start": "electron .",
+    "smoke": "node scripts/smoke-test.mjs",
+    "icon": "electron scripts/make-icon.js",
+    "dist": "electron-builder --dir",
+    "dist:mac": "electron-builder --mac",
+    "dist:win": "electron-builder --win",
+    "dist:linux": "electron-builder --linux"
+  },
+  "devDependencies": {
+    "@fontsource/baloo-2": "5.3.0",
+    "@fontsource/nunito": "5.3.0",
+    "electron": "44.7.0",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "io.github.simgolf.desktop",
+    "productName": "SimGolf",
+    "directories": { "output": "dist", "buildResources": "resources" },
+    "files": ["main.js", "preload.js", "site/**/*", "package.json"],
+    "asar": true,
+    "electronLanguages": ["en", "en-GB"],
+    "mac": {
+      "category": "public.app-category.simulation-games",
+      "target": [{ "target": "dmg", "arch": ["arm64"] }, { "target": "zip", "arch": ["arm64"] }],
+      "identity": "-",
+      "hardenedRuntime": false
+    },
+    "win": { "target": [{ "target": "nsis", "arch": ["x64"] }] },
+    "linux": { "target": ["AppImage"], "category": "Game" }
+  }
+}
